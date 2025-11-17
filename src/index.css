@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+
+    --primary: 224 71.4% 4.1%;
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 224 71.4% 4.1%;
+
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    
+    --accent: 215.4 16.3% 46.9%;
+    --accent-foreground: 210 20% 98%;
+
+    --border: 215 20.2% 65.1%;
+    --input: 215 20.2% 65.1%;
+    --ring: 224 71.4% 4.1%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+.glowing-border {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid theme('colors.border / 0.2');
+}
+
+.glowing-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 1px; /* border width */
+  background: linear-gradient(120deg, rgba(59, 130, 246, 0.5), rgba(139, 92, 246, 0.5), rgba(59, 130, 246, 0.5));
+  -webkit-mask: 
+     linear-gradient(#fff 0 0) content-box, 
+     linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.glowing-border:hover::before {
+  opacity: 1;
+}
+
+.animated-gradient-bg {
+  background: linear-gradient(120deg, #ffffff, #f0f5ff, #ffffff);
+  background-size: 200% 200%;
+  animation: background-pan 15s linear infinite;
+}
